@@ -30,4 +30,5 @@ path(
     "api/webhook/",
     include("webhook.urls")
 ),
+path("api/notifications/", include("notifications.urls")),
 ]

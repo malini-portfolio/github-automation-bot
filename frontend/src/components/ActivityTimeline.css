@@ -1,0 +1,47 @@
+.timeline-container{
+    margin-top:40px;
+}
+
+.timeline-title{
+    color:white;
+    margin-bottom:25px;
+}
+
+.timeline-item{
+    display:flex;
+    align-items:center;
+    gap:20px;
+
+    padding:20px;
+    margin-bottom:20px;
+
+    background:rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(15px);
+
+    border-radius:20px;
+
+    transition:0.3s ease;
+}
+
+.timeline-item:hover{
+    transform:translateY(-5px);
+}
+
+.timeline-icon{
+    font-size:35px;
+}
+
+.timeline-content h4{
+    color:white;
+    margin:0;
+}
+
+.timeline-content p{
+    color:#cbd5e1;
+    margin:5px 0;
+}
+
+.timeline-content small{
+    color:#94a3b8;
+}
