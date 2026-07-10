@@ -1,47 +1,141 @@
-.timeline-container{
-    margin-top:40px;
+.timeline-container {
+  margin-top: 20px;
 }
 
-.timeline-title{
-    color:white;
-    margin-bottom:25px;
+.timeline-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 24px;
 }
 
-.timeline-item{
-    display:flex;
-    align-items:center;
-    gap:20px;
-
-    padding:20px;
-    margin-bottom:20px;
-
-    background:rgba(255,255,255,0.08);
-
-    backdrop-filter:blur(15px);
-
-    border-radius:20px;
-
-    transition:0.3s ease;
+.timeline-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  padding-left: 20px;
+  border-left: 2px solid var(--border-color);
 }
 
-.timeline-item:hover{
-    transform:translateY(-5px);
+.timeline-card {
+  background: var(--bg-card);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 18px 20px;
+  display: flex;
+  gap: 16px;
+  transition: var(--transition-smooth);
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
-.timeline-icon{
-    font-size:35px;
+.timeline-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-focus);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.1);
 }
 
-.timeline-content h4{
-    color:white;
-    margin:0;
+.timeline-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  font-size: 20px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  position: absolute;
+  left: -41px;
+  top: 18px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
 }
 
-.timeline-content p{
-    color:#cbd5e1;
-    margin:5px 0;
+.timeline-badge.push {
+  color: var(--accent-indigo);
+  background: rgba(99, 102, 241, 0.1);
+  border-color: rgba(99, 102, 241, 0.2);
 }
 
-.timeline-content small{
-    color:#94a3b8;
+.timeline-badge.pr {
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.1);
+  border-color: rgba(251, 191, 36, 0.2);
+}
+
+.timeline-badge.issue {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.timeline-badge.default {
+  color: var(--accent-cyan);
+  background: rgba(6, 182, 212, 0.1);
+  border-color: rgba(6, 182, 212, 0.2);
+}
+
+.timeline-body {
+  flex: 1;
+}
+
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  gap: 12px;
+}
+
+.timeline-event-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.timeline-time {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.timeline-message {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.timeline-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+}
+
+.timeline-repo-badge {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 500;
+  border: 1px solid var(--border-color);
+}
+
+.timeline-date-full {
+  color: var(--text-muted);
+}
+
+.timeline-empty {
+  background: var(--bg-card);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 40px;
+  text-align: center;
+  color: var(--text-secondary);
 }

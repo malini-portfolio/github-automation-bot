@@ -33,8 +33,9 @@ ALLOWED_HOSTS = [
     "localhost",
     "elusive-donator-impeding.ngrok-free.dev",
     ".onrender.com",
+    "*",
 ]
-DEBUG = False
+
 
 # Application definition
 

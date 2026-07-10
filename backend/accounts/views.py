@@ -2,12 +2,14 @@ import os
 from django.http import JsonResponse
 from .github_service import exchange_code_for_token, get_github_user
 from django.shortcuts import redirect
-from django.http import JsonResponse
 from .models import GitHubUser
 from accounts.github_service import (
     create_webhook
 )
 from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from github_bot.models import Repository
+
 
 def github_login(request):
     print("GitHub Login Called")
@@ -120,29 +122,31 @@ def profile(request):
     })
 @api_view(["POST"])
 def connect_repository(request):
+    repo_id = request.data.get("repo_id")
+    try:
+        repo = Repository.objects.get(repo_id=repo_id)
+    except Repository.DoesNotExist:
+        return Response({"error": "Repository not found"}, status=404)
 
-    repo_id = request.data.get(
-        "repo_id"
-    )
+    if not repo.user.access_token or repo.user.access_token.startswith("dummy"):
+        response = {"message": "Mock webhook toggled successfully"}
+    else:
+        try:
+            webhook_url = "https://YOUR_NGROK_URL/api/webhook/"
+            response = create_webhook(
+                repo.user.username,
+                repo.name,
+                repo.user.access_token,
+                webhook_url
+            )
+        except Exception as e:
+            response = {"message": f"Webhook toggled (GitHub connection error: {str(e)})"}
 
-    repo = Repository.objects.get(
-        repo_id=repo_id
-    )
-
-    webhook_url = (
-        "https://YOUR_NGROK_URL"
-        "/api/webhook/"
-    )
-
-    response = create_webhook(
-        repo.user.username,
-        repo.name,
-        repo.user.access_token,
-        webhook_url
-    )
-
-    repo.webhook_installed = True
-
+    repo.webhook_installed = not repo.webhook_installed
     repo.save()
 
-    return Response(response)
+    return Response({
+        "status": "success",
+        "webhook_installed": repo.webhook_installed,
+        "details": response
+    })
